@@ -13,14 +13,14 @@ struct Vetor{
         this->_size = 0;
         this->_data = new int[capacidade];
     }
-
-    void push_back(int value){
+    
+    void push_back(int v){
         if(this->_size == this->_capacidade)
             return;
-        this->_data[this->_size] = value;
+        this->_data[this->_size] = v;
         this->_size += 1;
     }
-
+    
     void pop_back(){
         if(this->_size == 0)
             return;
@@ -31,41 +31,40 @@ struct Vetor{
     int& at(int indice){
         return this->_data[indice];
     }
-
+    
     int& front(){
         return this->_data[0];
     }
-
+    
     int& back(){
         return this->_data[this->_size - 1];
     }
-
+    
     int * begin(){
         return &this->_data[0];
     }
-
+    
     int * end(){
         return &this->_data[this->_size];
     }
-
+    
     int size(){
-        return this->_size;
-    }
+		return this->_size;
+	}
+	
+	int capacity(){
+		return this->_capacidade;
+	}
 
-    int capacity(){
-        return this->_capacidade;
-    }
-
-    void reserve(int value){
-        int capacidade = this->_capacidade;
-        int * data = new int[capacidade];
-        for(int i=0; i<capacidade; i++){
-            data[i] = this->_data[i];
+    void reserve(int v){
+        int * a = new int[this->_capacidade];
+        for(int i=0; i< this->_capacidade; i++){
+            a[i] = this->_data[i];
         }
-        this->_capacidade = value;
+        this->_capacidade = v;
         this->_data = new int[this->_capacidade];
-        for(int i=0; i<capacidade; i++)
-            this->_data[i] = data[i];
+        for(int i=0; i<this->_capacidade; i++)
+            this->_data[i] = a[i];
     }
 };
 
