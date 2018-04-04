@@ -56,31 +56,30 @@ struct Vetor{
         return this->_capacidade;
     }
 
-    void reserve(int capacity){
-        Vetor aux(capacity);
-
-        if(this->_size <= capacity)
-            for (int i = 0; i < this->_size; i++)
-                aux.push_back(this->_data[i]);
-        else
-            for (int i = 0; i < capacity; i++)
-                aux.push_back(this->_data[i]);
-
-        this->_data = new int[capacity];
-        this->_size = 0;
-
-        for (int i = 0; i < aux.size(); ++i) {
-            this->push_back(aux.at(i));
+    void reserve(int value){
+        int capacidade = this->_capacidade;
+        int * data = new int[capacidade];
+        for(int i=0; i<capacidade; i++){
+            data[i] = this->_data[i];
         }
+        this->_capacidade = value;
+        this->_data = new int[this->_capacidade];
+        for(int i=0; i<capacidade; i++)
+            this->_data[i] = data[i];
     }
 };
 
 int main(){
     Vetor pivet(5);
     pivet.push_back(4);
-    pivet.reserve(3);
+    pivet.push_back(1);
+    pivet.reserve(8);
     std:: cout << pivet.capacity() << endl;
     std:: cout << pivet.size() << endl;
+    std:: cout << pivet.front() << endl;
+    std:: cout << pivet.back() << endl;
+    std:: cout << pivet.begin() << endl;
+    std:: cout << pivet.end() << endl;
 
     return 0;
 }
