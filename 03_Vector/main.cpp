@@ -70,16 +70,16 @@ struct Vetor{
 };
 
 int main(){
-    Vetor pivet(5);
-    pivet.push_back(4);
-    pivet.push_back(1);
-    pivet.reserve(8);
-    std:: cout << pivet.capacity() << endl;
-    std:: cout << pivet.size() << endl;
-    std:: cout << pivet.front() << endl;
-    std:: cout << pivet.back() << endl;
-    std:: cout << pivet.begin() << endl;
-    std:: cout << pivet.end() << endl;
+    Vetor v(5);
+    v.push_back(4);
+    v.push_back(1);
+    v.reserve(8);
+    std:: cout << v.capacity() << endl;
+    std:: cout << v.size() << endl;
+    std:: cout << v.front() << endl;
+    std:: cout << v.back() << endl;
+    std:: cout << v.begin() << endl;
+    std:: cout << v.end() << endl;
 
     return 0;
 }
