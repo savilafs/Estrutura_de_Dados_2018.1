@@ -49,12 +49,12 @@ struct Vetor{
     }
     
     int size(){
-		return this->_size;
-	}
-	
-	int capacity(){
-		return this->_capacidade;
-	}
+	return this->_size;
+    }
+
+    int capacity(){
+	return this->_capacidade;
+    }
 
     void reserve(int v){
         int * a = new int[this->_capacidade];
