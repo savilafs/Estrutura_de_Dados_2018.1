@@ -1,6 +1,6 @@
 # Estrutura_de_Dados_2018.1
 
-## Atividade do Vector
-A atividade do Vector também foi bem interessante, pois permitiu que usassemos e lembrassemos de alguns métodos utilizados para construção de uma **struct**, neste caso de um **vetor**, que possui alguns atributos, e funções que auxiliam na manipulação de deus dados.
+## Atividade de Fractais
+A atividade de Fractais foi a que mais tive difuldade de entender no inicio, apesar das dificuldades foi muito interessante e proveltosa, pois através da biblioteca gráfica foi possível de forma prática e lúdica assimilar melhor o conteúdo de recursividade, o que tornou a ativiade mais desafiadora e animadora, aguçando ainda mais o nosso enteresse sobre o conteúdo.
 
-Seguindo a mesma linha de raciocínio das atividades anteriores esta atividade teve grande amparo através dos videos gravados em aula, que permitem mais segurança, e concedem mais tempo e assitência na hora de desenvolver os códigos e a lógica. 
+Semelhante as atividades já resolvidas anteriormente, mais uma vez os videos gravados em sala foram de grande ajuda para que pudessemos implementar pela primeira vez os códigos de recursão, e assim entender melhor a lógica por trás dos desenhos recursivos que nos foi pedido pra implementar. 
