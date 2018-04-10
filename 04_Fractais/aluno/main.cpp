@@ -13,7 +13,7 @@ void triangulo(Pen &p, int lado){
     }
 }
 
-void arvore(Pen& p, int lado, int ax_lado){
+void arvore1(Pen& p, int lado, int ax_lado){
     float ang = 35;
     float dec = 0.75;
     lado -= (p.rand() % 7 - 3);
@@ -30,11 +30,11 @@ void arvore(Pen& p, int lado, int ax_lado){
 
     p.walk(lado);
     p.right(ang);
-    arvore(p, lado * dec, ax_lado);
+    arvore1(p, lado * dec, ax_lado);
     p.left(ang);
-    arvore(p, lado * dec, ax_lado);
+    arvore1(p, lado * dec, ax_lado);
     p.left(ang);
-    arvore(p, lado * dec, ax_lado);
+    arvore1(p, lado * dec, ax_lado);
     p.right(ang);
 
     if(lado%3==0){
@@ -43,6 +43,29 @@ void arvore(Pen& p, int lado, int ax_lado){
 
     p.walk(-lado);
 }
+
+void arvore2(Pen& p, int lado){
+    float ang = 35;
+    float dec = 0.75;
+    lado -= lado/20;
+    if(lado < 10)
+        return;
+
+    p.setColor(rand()%255,205,50);
+    p.walk(lado);
+    p.right(ang);
+    arvore2(p, lado * dec);
+    p.left(ang);
+    arvore2(p, lado * dec);
+    p.left(ang);
+    arvore2(p, lado * dec);
+    p.right(ang);
+    if(lado%3==0){
+        p.setColor(210,105,30);
+    }
+    p.walk(-lado);
+}
+
 
 void trigo(Pen &p, int lado){
     int x=0;
@@ -94,7 +117,7 @@ void estrela(Pen &p, int lado){
 }
 
 /** Árvore **/
-void fractal_a(){
+void fractal_a1(){
     /** Árvore **/
     Pen p(800, 600);
     p.setThickness(2);
@@ -107,7 +130,26 @@ void fractal_a(){
     //se foi a partir de 1 ele controla a velocidade
     p.setSpeed(1000);
 
-    arvore(p, 80, 80);
+    arvore1(p, 80, 80);
+    //triangulo(p, 400);
+    //espera clicar no botao de fechar
+    p.wait();
+}
+
+void fractal_a2(){
+    /** Árvore **/
+    Pen p(800, 600);
+    p.setThickness(2);
+    //coloca o pincel na posicao x 300 y 500
+    p.setXY(400, 500);
+
+    //faz o pincel apontar pra direita
+    p.setHeading(90);
+    //se speed = 0 entao ele faz o mais rapido possivel
+    //se foi a partir de 1 ele controla a velocidade
+    p.setSpeed(100);
+
+    arvore2(p, 140);
     //triangulo(p, 400);
     //espera clicar no botao de fechar
     p.wait();
@@ -160,7 +202,8 @@ void fractal_e(){
 }
 
 int main(){
-    //fractal_a();
+    //fractal_a1();
+    //fractal_a2();
     //fractal_tl();
     //fractal_tr();
     //fractal_p();
