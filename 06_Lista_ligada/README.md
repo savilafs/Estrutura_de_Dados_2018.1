@@ -1,3 +1,6 @@
 # Estrutura_de_Dados_2018.1
 
 ## Atividade da Lista Ligada
+A atividade de Lista Ligada foi um pouco mais complexa do que imaginei, pois senti uma certa dificuldade de implementar algumas funções de forma iterativa, como por exemplo a função do remover de forma iterativa, dentre as demais essa foi a mais complicada, houveram também alguns empasses ao inserir de forma ordenada e iterativa, mas de forma geral as demais funções foram mais simples de compreender e implementar os códigos, ou seja, o nível de dificuldade das outras funções foi mais baixo, foi possível através desta atividade compreender melhor a estrutura da lista, e a forma como são trabalhadas cada uma das funções.
+
+De for similar as atividades anteriores que foram implementadas, através dos videos gravados em sala foi possível compreender melhor as estruturas das funções que estão por trás de uma lista, para que pudessemos implementar as que estavam incompletas ou até mesmo com erro, e assim pudessemos compreender de forma mais clara e simples através de analogias que são feitas em sala para melhor entendimento do conteúdo. Foram cerca de dois a três dias para implementar e compreender a atividade solicitada.
