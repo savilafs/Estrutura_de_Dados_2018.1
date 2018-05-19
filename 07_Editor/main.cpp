@@ -38,29 +38,23 @@ int main(){
             if(event.type == sf::Event::Closed)
                 janela.close();
             if(event.type == sf::Event::KeyPressed){
-                if((event.key.code >= sf::Keyboard::A) &&
-                   (event.key.code <= sf::Keyboard::Z)){
-                    char tecla = 'a' + (event.key.code - sf::Keyboard::A);
-                    cout << tecla << endl;
+                if(event.key.control && (event.key.code == sf::Keyboard::Z)){
+                    cout << "control z" << endl;
+                }else if(event.key.control && (event.key.code == sf::Keyboard::R)){
+                    cout << "control r" << endl;
+                }else if((event.key.code >= sf::Keyboard::A) && (event.key.code <= sf::Keyboard::Z)){
+                    char tecla = (event.key.code - sf::Keyboard::A) + 'a';
+                    if(event.key.shift)
+                        tecla += -'a' + 'A';
                     amb.texto.insert(amb.cursor, tecla);
-                }
-                else if(event.key.code == sf::Keyboard::Z){
-                    if(event.key.control)
-                        cout << "control z" << endl;
-                }
-                else if(event.key.code == sf::Keyboard::R){
-                    if(event.key.control)
-                        cout << "control r" << endl;
-                }
-                else if((event.key.code == sf::Keyboard::Return)){
+                    cout << tecla << endl;
+                }else if((event.key.code == sf::Keyboard::Return)){
                     cout << "enter" << endl;
                     amb.texto.insert(amb.cursor, '\n');
-                }
-                else if((event.key.code == sf::Keyboard::Space)){
+                }else if((event.key.code == sf::Keyboard::Space)){
                     cout << "espaco" << endl;
                     amb.texto.insert(amb.cursor, ' ');
-                }
-                else if(event.key.code == sf::Keyboard::BackSpace){
+                }else if(event.key.code == sf::Keyboard::BackSpace){
                     cout << "backspace" << endl;
                     if(amb.cursor != amb.texto.begin())
                          amb.texto.erase(amb.cursor++, amb.cursor--);
@@ -68,11 +62,9 @@ int main(){
                     cout << "delete" << endl;
                     if(amb.cursor != amb.texto.end())
                         amb.texto.erase(amb.cursor++);
-                }
-                else if(event.key.code == sf::Keyboard::Left){
+                }else if(event.key.code == sf::Keyboard::Left){
                     amb.cursor--;
-                }
-                else if(event.key.code == sf::Keyboard::Right){
+                }else if(event.key.code == sf::Keyboard::Right){
                     amb.cursor++;
                 }
             }
