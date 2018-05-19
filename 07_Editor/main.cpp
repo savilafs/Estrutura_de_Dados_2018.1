@@ -52,11 +52,6 @@ int main(){
                     if(event.key.control)
                         cout << "control r" << endl;
                 }
-                else if((event.key.code >= sf::Keyboard::A) &&
-                   (event.key.code <= sf::Keyboard::Z)){
-                    char tecla = (event.key.code - sf::Keyboard::A) + 'a';
-                    amb.texto.insert(amb.cursor, tecla);
-                }
                 else if((event.key.code == sf::Keyboard::Return)){
                     cout << "enter" << endl;
                     amb.texto.insert(amb.cursor, '\n');
