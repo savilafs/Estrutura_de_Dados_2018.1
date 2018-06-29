@@ -42,6 +42,15 @@ int main(){
                     cout << "control z" << endl;
                 }else if(event.key.control && (event.key.code == sf::Keyboard::R)){
                     cout << "control r" << endl;
+                }else if(event.key.shift && (event.key.code == sf::Keyboard::Num1)){
+                    cout << "!" << endl;
+                    amb.texto.insert(amb.cursor, '!');
+                }else if(event.key.alt && (event.key.code == sf::Keyboard::W)){
+                    cout << "?" << endl;
+                    amb.texto.insert(amb.cursor, '?');
+                }else if(event.key.code == sf::Keyboard::Comma){
+                    cout << "," << endl;
+                    amb.texto.insert(amb.cursor, ',');
                 }else if((event.key.code >= sf::Keyboard::A) && (event.key.code <= sf::Keyboard::Z)){
                     char tecla = (event.key.code - sf::Keyboard::A) + 'a';
                     if(event.key.shift)
