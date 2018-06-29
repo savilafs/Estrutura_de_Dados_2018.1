@@ -1,17 +1,16 @@
 #include <iostream>
 #include <ctime>
-#include <cstdlib> //rand
+#include <cstdlib>
 #include "libs/ed_sort.h"
 
 using namespace std;
-
 //cores rgbcymkw
 //red, green, blue, cyan, yellow, magenta, black, white
 
 void swap_sort(vector<int>& vet){
     for(int i = 0; i < (int) vet.size() - 1; i++){
         view_set_faixa(i, vet.size() - 1);
-        for(int j = i + 1; j < (int) vet.size(); j++){
+        for(int j = i + 1; j < (int) vet.size(); j++){ 
             view_show(vet, {i, j}, "yg");
             if(vet[j] < vet[i]){
                 std::swap(vet[i], vet[j]);
@@ -77,106 +76,85 @@ void palma_sort(vector<int>& vet){
 }
 
 void bubble_sort(vector<int>& vet){
-    int ultimo = vet.size()-1;
-    for(int i = ultimo; i > 0; i--){
-        for(int j = 0; j < i; j++){
-            if(vet[j] > vet[j+1]){
-                swap(vet[j], vet[j+1]);
-                view_show(vet, {i, j}, "rgy");
+    for(int i = vet.size(); i > 0; i--){
+        for(int j = 0; j < i - 1; j++){
+            view_show(vet, {i, j, j + 1}, "rgy");
+            if(vet[j] > vet[j + 1]){
+                std::swap(vet[j], vet[j + 1]);
+                view_show(vet, {i, j, j + 1}, "rgy");
             }
-            view_show(vet, {i, j}, "rgy");
         }
-    }
 
+    }
 }
 
 void insertion_sort(vector<int>& vet){
-    int ultimo = vet.size();
-    for(int i = 0; i < ultimo; i++){
+    for(int i = 1; i < (int) vet.size(); i++){
         for(int j = i; j > 0; j--){
-            if(vet[j]<vet[j-1]){
-                swap(vet[j], vet[j-1]);
-                view_show(vet, {i, j}, "rgy");
+            view_show(vet, {i, j, j - 1}, "rgy");
+            if(vet[j] < vet[j - 1]){
+                std::swap(vet[j], vet[j - 1]);
+                view_show(vet, {i, j, j - 1}, "ryg");
             }else{
                 break;
             }
-            view_show(vet, {i, j}, "rgy");
         }
-    }
 
+    }
 }
 
-//intervalos fechados [c, f]
-#define qshow view_show(vet,{C,F,i,j}, "rgby");
-
-void quick_sort(vector<int>& vet, int c, int f){
-    if(c >= f){
+void quick_sort(vector<int> & vet, int C, int F){
+    if(C >= F)
         return;
-    }
-    int pivo = vet[c];
-    int i = c;
-    int j = f;
-
-    view_set_faixa(c, f);
-
+    int pivo = vet[C];
+    int i = C;
+    int j = F;
     while(i <= j){
-        while(vet[i]< pivo){
+        while(vet[i] < pivo)
             i++;
-        }
-        while((vet[j] > pivo) && (i<c)){
+        while(vet[j] > pivo)
             j--;
-        }
-        if(i<=j){
-           std::swap(vet[i], vet[j]);
-           i++;
-           j--;
-        }
+        if(i <= j)
+            std::swap(vet[i++], vet[j--]);
+        view_show(vet, {C, F, i, j}, "rgby");
     }
-    quick_sort(vet, c, j);
-    quick_sort(vet, i, f);
+    quick_sort(vet, C, j);
+    quick_sort(vet, i, F);
 }
 
-void marge(vector<int>& vet, int a, int b, int c){
+void merge(vector<int>& vet, int a, int b, int c){
     int i = a;
     int j = b;
     vector<int> vaux;
-    vaux.reserve(c-a);
-    while((i< b) && (j<c)){//testando se há elementos nas particoes particao
-        if(vet[i]< vet[j]){
-            vaux.push_back(vet[i++]);//salvando i atual e após isso andando para frente
-        }else{
+    vaux.reserve(c - a);
+    while((i < b) && (j < c)){
+        if(vet[i] < vet[j])
+            vaux.push_back(vet[i++]);
+        else
             vaux.push_back(vet[j++]);
-            view_show(vet, {a,b,c,i,j},"rgbyc");
-
-        }
+        view_show(vet, {a, b, c, i, j}, "rgbyc");
     }
-    while(i < b){//testando se ainda há algo na primeira particao
-        vaux.push_back(vet[i++]);//salvando i atual e após isso andando para frente
-        view_show(vet, {a,b,c,i,j},"rgbyc");
-
+    while(i < b){
+        vaux.push_back(vet[i++]);
+        view_show(vet, {a, b, c, i, j}, "rgbyc");
     }
-    while(j < c){//testando se ainda há algo na ultima particao
+    while(j < c){
         vaux.push_back(vet[j++]);
-        view_show(vet, {a,b,c,i,j},"rgbyc");
+        view_show(vet, {a, b, c, i, j}, "rgbyc");
     }
     for(int i = 0; i < (int) vaux.size(); i++){
-        vet[i+a] = vaux[i];
-        view_show(vet, {a + i},"rgbyc");
-
+        vet[a + i] = vaux[i];
+        view_show(vet, {a + i}, "r");
     }
- }
+}
 
-//   vector<int>& aux para guardar    ordenaçao e cola no vetor original
-//   compara o menor e ele anda
-void margesort(vector<int>& vet, int a, int b, int c){
-    if(c == a+1){
+void merge_sort(vector<int>& vet, int a, int c){
+    if(c == a + 1)
         return;
-    }
-    b = (a+c) / 2;
-    margesort(vet, a, b, c);//posicionam os elementos
-    margesort(vet, a, b, c);//posicionam os elementos
-    margesort(vet, a, b, c);//trocam os elementos de fato // na volta
-    view_show(vet);
+    int b = (a + c)/2;
+    merge_sort(vet, a, b);
+    merge_sort(vet, b, c);
+    merge(vet, a, b, c);
 }
 
 void test_sort(vector<int>& vet){
@@ -190,6 +168,11 @@ void test_sort(vector<int>& vet){
     }
 }
 
+void preencher_vector(vector<int> &vet, int min, int max, int qtd){
+    for(int i = 0; i < qtd; i++)
+        vet[i] = (rand() % (max - min + 1) + min);
+}
+
 int main(){
     srand(time(NULL));
 
@@ -199,17 +182,18 @@ int main(){
     int min = 10;
     int max = 400;
 
-    for(int i = 0; i < qtd; i++)
-        vet[i] = (rand() % (max - min + 1) + min);
-
+    preencher_vector(vet, min, max, qtd);
     view_set_bar();
-    view_set_faixa(0, qtd - 1);
 
     //swap_sort(vet);
     //selection_sort(vet);
-    // insertion_sort(vet);
+    //palma_sort(vet);
+    //bubble_sort(vet);
+    //insertion_sort(vet);
+    //quick_sort(vet, 0, vet.size() - 1);
     //reverse_minimum_sort(vet);
-    //margesort(vet, 0 , 0, vet.size());
+    merge_sort(vet, 0, vet.size());
+
     test_sort(vet);
     view_lock();
     return 0;
